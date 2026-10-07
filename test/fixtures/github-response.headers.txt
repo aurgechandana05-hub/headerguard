@@ -1,0 +1,9 @@
+# Sanitized excerpts from a public GET response to https://github.com (2026-10-07).
+# No cookies, request IDs, user-specific values, or unrelated CSP source lists are retained.
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'; base-uri 'self'; script-src github.githubassets.com 'sha256-redacted'; style-src 'unsafe-inline'; frame-ancestors 'none'
