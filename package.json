@@ -1,0 +1,12 @@
+{
+  "name": "headerguard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A defensive HTTP security-header auditor with JSON and CI support.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

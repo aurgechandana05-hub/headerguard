@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b19">
+    <meta name="description" content="A private, defensive HTTP security-header auditor for systems you own or are authorized to assess.">
+    <title>HeaderGuard — response header audit</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="analyzer.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="HeaderGuard home">
+        <span class="brand-icon" aria-hidden="true"><span></span><i></i></span>
+        <span class="brand-word">header<span>guard</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="private-badge"><span class="private-dot"></span>Runs locally</span>
+        <a class="github-link" href="README.md">Documentation <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="hero">
+        <div class="eyebrow"><span></span> DEFENSIVE SECURITY TOOL</div>
+        <h1>Make your response<br><span>headers work harder.</span></h1>
+        <p class="intro">Check the security headers your server actually sends. Get evidence-backed findings, practical guidance, and a JSON report ready for CI.</p>
+        <div class="trust-line">
+          <span class="trust-icon" aria-hidden="true">✓</span>
+          Your input stays in this browser. Nothing is uploaded.
+        </div>
+      </section>
+
+      <section class="workspace" aria-labelledby="audit-title">
+        <div class="workspace-heading">
+          <div>
+            <div class="section-label">RESPONSE ANALYZER</div>
+            <h2 id="audit-title">Audit response headers</h2>
+          </div>
+          <button id="load-example" class="text-button" type="button"><span aria-hidden="true">✦</span> Load example</button>
+        </div>
+
+        <form id="audit-form">
+          <label class="input-label" for="headers-input">Paste an HTTP response header block</label>
+          <p class="input-hint">Copy from your browser's network panel or use <code>curl -sS -D - -o /dev/null https://your-host</code>.</p>
+          <textarea id="headers-input" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="HTTP/2 200&#10;content-type: text/html; charset=utf-8&#10;strict-transport-security: max-age=31536000&#10;..."></textarea>
+          <div class="form-options">
+            <label class="check-label"><input id="https-toggle" type="checkbox" checked><span class="custom-check" aria-hidden="true"></span><span>Response was served over <strong>HTTPS</strong></span></label>
+            <span class="private-note"><span aria-hidden="true">◉</span> Private by design</span>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit"><span aria-hidden="true">⌕</span> Audit response</button>
+            <button id="clear-input" class="clear-button" type="button">Clear input</button>
+          </div>
+        </form>
+
+        <div id="error-message" class="error-message" role="alert" hidden></div>
+      </section>
+
+      <section id="results" class="results" aria-live="polite" hidden>
+        <div class="results-header">
+          <div>
+            <div class="section-label">AUDIT REPORT</div>
+            <h2>Your results</h2>
+          </div>
+          <div class="report-actions">
+            <button id="copy-report" class="outline-button" type="button"><span aria-hidden="true">▣</span> Copy JSON</button>
+            <button id="download-report" class="outline-button" type="button"><span aria-hidden="true">↓</span> Download</button>
+          </div>
+        </div>
+        <div class="summary-grid">
+          <article class="score-card">
+            <div class="score-orbit"><div><strong id="score-value">—</strong><span>out of 100</span></div></div>
+            <div class="score-copy"><strong>Header score</strong><span>A weighted summary, not a compliance rating.</span></div>
+          </article>
+          <article class="metric-card"><span class="metric-icon pass-icon">✓</span><strong id="passed-count">0</strong><span>Checks passed</span></article>
+          <article class="metric-card"><span class="metric-icon finding-icon">!</span><strong id="finding-count">0</strong><span>Findings</span></article>
+        </div>
+        <div class="checks-heading"><h3>Checks &amp; findings</h3><span id="transport-badge" class="transport-badge"></span></div>
+        <div id="checks-list" class="checks-list"></div>
+        <details class="json-details">
+          <summary>View machine-readable JSON</summary>
+          <pre id="json-output"></pre>
+        </details>
+        <p class="disclaimer"><span aria-hidden="true">ⓘ</span> Header checks are indicators, not proof a site is secure or vulnerable. Review findings in the context of your application.</p>
+      </section>
+
+      <section class="bottom-info">
+        <div class="info-icon" aria-hidden="true">⌘</div>
+        <div><strong>Built for useful signal, not noise.</strong><p>Headers are checked with context: HSTS is skipped for HTTP, CSP framing rules are recognized, and duplicate security headers are surfaced instead of guessed.</p></div>
+        <a href="README.md">How it works <span aria-hidden="true">→</span></a>
+      </section>
+
+      <footer><span>HeaderGuard <span class="footer-muted">· A defensive security utility</span></span><span>v1.0 <span class="footer-dot">•</span> Local-first</span></footer>
+    </main>
+  </body>
+</html>
