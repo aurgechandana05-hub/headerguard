@@ -36,7 +36,7 @@ test("rejects malformed and empty header input with useful errors", () => {
 test("rejects duplicate security headers rather than guessing their meaning", () => {
   assert.throws(
     () => HeaderGuard.parseHeaders("Content-Security-Policy: default-src 'self'\ncontent-security-policy: script-src 'self'"),
-    /more than one Content-Security-Policy/
+    /more than one content-security-policy/
   );
 });
 
